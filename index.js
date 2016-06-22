@@ -6,6 +6,7 @@ $(document).ready(function () {
 
     URI: '/api/people',
     disabled: 'disabled',
+    removePersonClass: 'li span.glyphicon.glyphicon-remove.alert-danger',
     errorTemplateId: '#errorTemplate',
     peopleTemplateId: '#peopleTemplate',
 
@@ -19,6 +20,7 @@ $(document).ready(function () {
       this.$app = $('#app');
       this.$name = $('#name');
       this.$addPersonButton = $('#addPersonButton');
+      this.$app.delegate(this.removePersonClass, 'click', this.removePersonHandler.bind(this));
     },
 
     registerListeners: function() {
@@ -76,15 +78,23 @@ $(document).ready(function () {
     },
 
     then: function(people) {
-      // console.log(people);
       this.$app.html(this.mustache(this.peopleTemplateId, { "people": people }));
     },
 
     fail: function(jqXHR, status, statusText) {
       const data = { 'message': status + ': ' + statusText };
-
-      // console.log(jqXHR);
       this.$app.html(this.mustache(this.errorTemplateId, data));
+    },
+
+    removePersonHandler: function(event) {
+      const $span = $(event.target);
+      const url = this.URI + '/' + $span.attr('data-person-id');
+
+      $.ajax({ type: 'delete', url: url })
+        .fail(this.fail.bind(this))
+        .then(function removeParentLi() {
+          $span.closest('li').toggle('fast').remove('fast');
+        });
     },
 
     mustache: function(templateId, data) {

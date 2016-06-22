@@ -1,12 +1,3 @@
 {
-  "people": [
-    {
-      "id": 1,
-      "name": "Max"
-    },
-    {
-      "id": 2,
-      "name": "Bax"
-    }
-  ]
+  "people": []
 }

@@ -30,7 +30,7 @@
 <script id="peopleTemplate" type="text/template">
   <ul class="list-style-none">
     {{#people}}
-      <li>{{id}}. {{name}}</li>
+      <li><span data-person-id="{{id}}" class="glyphicon glyphicon-remove alert-danger" aria-hidden="true"></span> {{name}}</li>
     {{/people}}
   </ul>
 </script>
