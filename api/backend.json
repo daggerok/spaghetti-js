@@ -1,0 +1,22 @@
+{
+  "people": [
+    {
+      "id": 1,
+      "name": "Max"
+    },
+    {
+      "id": 2,
+      "name": "Bax"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "daggerok"
+    },
+    {
+      "id": -1,
+      "username": "anonymous"
+    }
+  ]
+}

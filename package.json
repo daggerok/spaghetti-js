@@ -1,0 +1,38 @@
+{
+  "name": "spaghetti-js",
+  "version": "1.0.0",
+  "description": "modular jquery with handlebars.js and bootstrap",
+  "main": "index.js",
+  "scripts": {
+    "livereload": "livereload",
+    "json-server": "json-server ./api/backend.json -r ./api/routes.json -p 3000 --static ./ -w",
+    "start": "npm i && npm-run-all --parallel json-server livereload"
+  },
+  "author": "daggerok",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "handlebars": "^4.0.5",
+    "jquery": "^3.0.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.8.14",
+    "livereload": "^0.4.1",
+    "npm-run-all": "^2.2.0"
+  },
+  "keywords": [
+    "jquery",
+    "bootstrap",
+    "handlebars",
+    "json-server",
+    "livereload"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/daggerok/spaghetti-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/daggerok/spaghetti-js/issues"
+  },
+  "homepage": "https://github.com/daggerok/spaghetti-js#readme"
+}
