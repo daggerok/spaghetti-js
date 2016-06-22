@@ -1,32 +1,37 @@
 'use strict';
 
-$(document).ready(function() {
+$(document).ready(function () {
 
   const PPL = {
 
     $app: $('#app'),
 
-    hbs: function(hbsSelector) {
-      return Handlebars.compile($(hbsSelector).html());
-    },
-
-    then: function(people) {
-      PPL.$app.html(PPL.hbs('#peopleTemplate')({ "people": people }));
-    },
-
-    fail: function(jqXHR, status, statusText) {
-
-      const data = { "message": status + ': ' + statusText };
-
-      PPL.$app.html(PPL.hbs('#errorTemplate')(data));
-    },
-
-    render: function() {
+    render: function () {
 
       $.getJSON('/api/people')
         .then(PPL.then)
         .fail(PPL.fail);
+    },
+
+    then: function (people) {
+
+      const hbs = PPL.hbs('#peopleTemplate');
+
+      PPL.$app.html(hbs({ "people": people }));
+    },
+
+    fail: function (jqXHR, status, statusText) {
+
+      const hbs = PPL.hbs('#errorTemplate');
+      const data = { "message": status + ': ' + statusText };
+
+      PPL.$app.html(hbs(data));
+    },
+
+    hbs: function (hbsSelector) {
+      return Handlebars.compile($(hbsSelector).html());
     }
+
   };
 
   PPL.render();
