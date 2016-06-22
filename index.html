@@ -19,30 +19,23 @@
     <input class="form-control" type="text" id="name">
   </div>
   <button id="addPersonButton" class="btn btn-warning disabled">save</button>
-  <button id="renderPeopleButton" class="btn btn-primary">synchronize</button>
 </div>
 
-<div class="row container-fluid">
-  <div class="panel panel-heading"><h4>people</h4></div>
-  <div id="app" class="container-fluid col-sm-6"></div>
-  <div class="container-fluid col-sm-6">
-    <ul id="list" class="list-style-none"></ul>
-  </div>
+<div class="panel panel-heading">
+  <h4>people</h4>
 </div>
 
-<script id="peopleTemplate" type="text/x-handlebars-template">
+<div id="app" class="container-fluid"></div>
+
+<script id="peopleTemplate" type="text/template">
   <ul class="list-style-none">
-    {{#each people}}
-      {{> person}}
-    {{/each}}
+    {{#people}}
+      <li>{{id}}. {{name}}</li>
+    {{/people}}
   </ul>
 </script>
 
-<script id="personTemplate" type="text/x-handlebars-template">
-  <li>{{id}}. {{name}}</li>
-</script>
-
-<script id="errorTemplate" type="text/x-handlebars-template">
+<script id="errorTemplate" type="text/template">
   <h3 class="panel-heading">:(</h3>
   <div class="text-danger panel-body">
     sorry, but something wrong happened ({{message}})
@@ -50,7 +43,7 @@
 </script>
 
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+<script src="/node_modules/mustache/mustache.min.js"></script>
 <script src="/index.js"></script>
 </body>
 </html>

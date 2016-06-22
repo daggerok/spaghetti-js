@@ -1,7 +1,7 @@
 {
   "name": "spaghetti-js",
   "version": "1.0.0",
-  "description": "modular jquery with handlebars.js and bootstrap",
+  "description": "modular jquery with mustache.js and bootstrap",
   "main": "index.js",
   "scripts": {
     "livereload": "livereload",
@@ -12,8 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^3.3.6",
-    "handlebars": "^4.0.5",
-    "jquery": "^3.0.0"
+    "jquery": "^3.0.0",
+    "mustache": "^2.2.1"
   },
   "devDependencies": {
     "json-server": "^0.8.14",
@@ -23,7 +23,7 @@
   "keywords": [
     "jquery",
     "bootstrap",
-    "handlebars",
+    "mustache",
     "json-server",
     "livereload"
   ],
