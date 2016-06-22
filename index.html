@@ -27,20 +27,20 @@
 
 <div id="app" class="container-fluid"></div>
 
-<script id="peopleTemplate" type="text/template">
+<template id="peopleTemplate">
   <ul class="list-style-none">
     {{#people}}
       <li><span data-person-id="{{id}}" class="glyphicon glyphicon-remove alert-danger" aria-hidden="true"></span> {{name}}</li>
     {{/people}}
   </ul>
-</script>
+</template>
 
-<script id="errorTemplate" type="text/template">
+<template id="errorTemplate">
   <h3 class="panel-heading">:(</h3>
   <div class="text-danger panel-body">
     sorry, but something wrong happened ({{message}})
   </div>
-</script>
+</template>
 
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="/node_modules/mustache/mustache.min.js"></script>
