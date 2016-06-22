@@ -10,8 +10,8 @@ $(document).ready(function() {
       return Handlebars.compile($(hbsSelector).html());
     },
 
-    then: function(json) {
-      PPL.$app.html(PPL.hbs('#peopleTemplate')({ "people": json }));
+    then: function(people) {
+      PPL.$app.html(PPL.hbs('#peopleTemplate')({ "people": people }));
     },
 
     fail: function(jqXHR, status, statusText) {
@@ -23,7 +23,7 @@ $(document).ready(function() {
 
     render: function() {
 
-      $.getJSON('/api/people1')
+      $.getJSON('/api/people')
         .then(PPL.then)
         .fail(PPL.fail);
     }
