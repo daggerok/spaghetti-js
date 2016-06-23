@@ -14,13 +14,3 @@ ul li span.glyphicon.glyphicon-ok-circle {
 ul li span.glyphicon-remove-circle {
   display: none;
 }
-
-/* angular 1.5: */
-.ul-list-style-none__li-display-inline-block {
-  display: inline-block;
-}
-.ul-list-style-none__li-display-inline-block-banner {
-  display: inline-block;
-  font-size: large;
-  font-weight: bold;
-}

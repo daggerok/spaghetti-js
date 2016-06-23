@@ -2,7 +2,7 @@
 
 (function (ng) {
 
-  return angular
+  return ng
     .module('spaghetti-ng', [
       'ui.router'
     ])
@@ -17,12 +17,14 @@
 
         .state('/home', {
           url: '/',
-          templateUrl: '/spaghetti-ng/parts/home.html'
+          templateUrl: '/spaghetti-ng/parts/home.html',
+          controller: 'homeController'
         })
 
         .state('/about', {
           url: '/about',
-          templateUrl: '/spaghetti-ng/parts/about.html'
+          templateUrl: '/spaghetti-ng/parts/about.html',
+          controller: 'aboutController'
         });
 
     }]);
