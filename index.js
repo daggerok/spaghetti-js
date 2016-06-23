@@ -29,6 +29,7 @@ $(document).ready(function () {
       this.$app.delegate(this.editPersonClass, 'click', this.editPersonHandler.bind(this));
       this.$app.delegate(this.cancelEditPersonClass, 'click', this.cancelEditPersonHandler.bind(this));
       this.$app.delegate(this.updatePersonClass, 'click', this.updatePersonHandler.bind(this));
+      this.$app.delegate(this.editClass, 'keyup', this.onEditKeyup.bind(this));
     },
 
     registerListeners: function() {
@@ -52,6 +53,16 @@ $(document).ready(function () {
         }
       } else {
         this.disableAddPersonButton();
+      }
+    },
+
+    onEditKeyup: function(event) {
+      if ($(event.target).val()) {
+        const keyCode = event.keyCode || event.which;
+
+        if (13 === keyCode) {
+          this.updatePersonHandler(event);
+        }
       }
     },
 
