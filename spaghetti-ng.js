@@ -18,7 +18,17 @@
         .state('/home', {
           url: '/',
           templateUrl: '/spaghetti-ng/parts/home.html',
-          controller: 'homeController'
+          controller: 'homeController',
+          resolve: {
+            people: ['$http', function($http) {
+              return $http.get('/api/people')
+                .then(
+                  function(response) {
+                    return response.data;
+                  }
+                );
+            }]
+          }
         })
 
         .state('/about', {

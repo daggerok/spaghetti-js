@@ -6,22 +6,17 @@
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/index.css">
 </head>
-<body class="container">
+<body class="container-fluid">
 
 <!-- angular 1.5: -->
-<section class="container-fluid">
+<section>
 
-  <div class="panel page-header">
-    <h4>play ng</h4>
+  <div class="container-fluid">
     <header data-ng-include="'/spaghetti-ng/parts/header.html'"></header>
   </div>
 
-  <div class="panel panel-body">
+  <div class="container-fluid">
     <div data-ui-view></div>
-  </div>
-
-  <div class="panel panel-footer">
-    <footer data-ng-include="'/spaghetti-ng/parts/footer.html'"></footer>
   </div>
 
 </section>
@@ -32,7 +27,7 @@
 <script src="/spaghetti-ng/ctrl/aboutController.js"></script>
 
 <!-- jquery, mustache: -->
-<main class="container-fluid">
+<main class="container">
 
   <div class="panel panel-heading">
     <h4>jquery is playing</h4>
@@ -83,7 +78,7 @@
 <script src="/spaghetti-jquery.js"></script>
 
 <!-- plain old js -->
-<aside class="container-fluid">
+<aside class="container">
 
   <div class="panel panel-heading">
     <h4>js is playing too</h4>
