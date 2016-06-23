@@ -6,9 +6,14 @@ $(document).ready(function () {
 
     URI: '/api/people',
     disabled: 'disabled',
-    removePersonClass: 'li span.glyphicon.glyphicon-remove.alert-danger',
     errorTemplateId: '#errorTemplate',
     peopleTemplateId: '#peopleTemplate',
+    viewClass: 'span.view',
+    removePersonClass: 'span.glyphicon.glyphicon-remove',
+    editPersonClass: 'span.glyphicon.glyphicon-pencil',
+    editClass: 'input.edit',
+    cancelEditPersonClass: 'span.glyphicon-remove-circle',
+    updatePersonClass: 'span.glyphicon.glyphicon-ok-circle',
 
     main: function() {
       this.cacheDom();
@@ -21,6 +26,9 @@ $(document).ready(function () {
       this.$name = $('#name');
       this.$addPersonButton = $('#addPersonButton');
       this.$app.delegate(this.removePersonClass, 'click', this.removePersonHandler.bind(this));
+      this.$app.delegate(this.editPersonClass, 'click', this.editPersonHandler.bind(this));
+      this.$app.delegate(this.cancelEditPersonClass, 'click', this.cancelEditPersonHandler.bind(this));
+      this.$app.delegate(this.updatePersonClass, 'click', this.updatePersonHandler.bind(this));
     },
 
     registerListeners: function() {
@@ -86,15 +94,64 @@ $(document).ready(function () {
       this.$app.html(this.mustache(this.errorTemplateId, data));
     },
 
+    parent: function(event) {
+      return $(event.target).closest('li');
+    },
+
+    uriWithId: function(event) {
+      return this.URI + '/' + this.parent(event).attr('data-person-id');;
+    },
+
     removePersonHandler: function(event) {
-      const $span = $(event.target);
-      const url = this.URI + '/' + $span.attr('data-person-id');
+      const $parent = this.parent(event);
+      const url = this.uriWithId(event);
 
       $.ajax({ type: 'delete', url: url })
         .fail(this.fail.bind(this))
-        .then(function removeParentLi() {
-          $span.closest('li').toggle('fast').remove('fast');
+        .then(function removeParent() {
+          $parent.toggle('fast').remove('fast');
         });
+    },
+
+    editPersonHandler: function(event) {
+      this.toggle(this.parent(event), true);
+    },
+
+    cancelEditPersonHandler: function(event) {
+      this.toggle(this.parent(event), false);
+    },
+
+    toggle: function($parent, on) {
+      if (on) {
+        $parent.find(this.removePersonClass).hide();
+        $parent.find(this.editPersonClass).hide();
+        $parent.find(this.viewClass).hide();
+
+        $parent.find(this.editClass).show();
+        $parent.find(this.updatePersonClass).show();
+        $parent.find(this.cancelEditPersonClass).show();
+      } else {
+        $parent.find(this.removePersonClass).show();
+        $parent.find(this.editPersonClass).show();
+        $parent.find(this.viewClass).show();
+
+        $parent.find(this.editClass).hide();
+        $parent.find(this.updatePersonClass).hide();
+        $parent.find(this.cancelEditPersonClass).hide();
+      }
+    },
+
+    updatePersonHandler: function(event) {
+      const $parent = this.parent(event);
+      const url = this.uriWithId(event);
+      const name = $parent.find(this.editClass).val();
+
+      $.ajax({ type: 'put', url: url, data: { name: name } })
+        .fail(this.fail.bind(this))
+        .then(function updateParent() {
+          $parent.find(this.viewClass).html(name);
+          this.toggle($parent, false);
+        }.bind(this));
     },
 
     mustache: function(templateId, data) {

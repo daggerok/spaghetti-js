@@ -1,3 +1,16 @@
 .list-style-none {
   list-style: none;
 }
+ul li span.glyphicon.glyphicon-pencil {
+  display: inline;
+}
+ul li input.edit {
+  display: none;
+}
+ul li span.glyphicon.glyphicon-ok-circle {
+  display: none;
+}
+
+ul li span.glyphicon-remove-circle {
+  display: none;
+}
