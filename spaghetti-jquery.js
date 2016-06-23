@@ -1,7 +1,7 @@
 'use strict';
 
 $(document).ready(function () {
-
+  
   const JQUERY_APP = {
 
     URI: '/api/people',
@@ -171,62 +171,6 @@ $(document).ready(function () {
 
   };
 
-  const JS_APP = {
-
-    leftOperandId: 'left-operand',
-    rightOperandId: 'right-operand',
-
-    main: function() {
-      this.cacheDom();
-      this.registerListeners();
-      this.render();
-    },
-
-    cacheDom: function() {
-      this.leftOperand = document.getElementById(this.leftOperandId);
-      this.rightOperand = document.getElementById(this.rightOperandId);
-      this.sum = document.getElementById('sum');
-
-      this.left = this.valueOf(this.leftOperand);
-      this.right = this.valueOf(this.rightOperand);
-    },
-
-    registerListeners: function() {
-      this.leftOperand.addEventListener('input', this.render.bind(this));
-      this.rightOperand.addEventListener('input', this.render.bind(this));
-    },
-
-    valueOf: function(element) {
-      // typeof element.value == string
-      // typeof +element.value == number
-
-      // 0 = +element.value || 0
-      // return +element.value || 0;
-
-      // NaN = +element.value
-      return +element.value;
-    },
-
-    calculate: function(event) {
-      if (event) {
-        const element = event.target;
-
-        if (this.leftOperandId === element.id) {
-          this.left = this.valueOf(element);
-        } else if (this.rightOperandId === element.id) {
-          this.right = this.valueOf(element);
-        }
-      }
-    },
-
-    render: function(event) {
-      this.calculate(event);
-      this.sum.innerHTML = this.left + this.right;
-    }
-
-  };
-
   JQUERY_APP.main();
-  JS_APP.main();
-  
+
 });

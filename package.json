@@ -1,7 +1,7 @@
 {
   "name": "spaghetti-js",
   "version": "1.0.0",
-  "description": "modular jquery with mustache.js and bootstrap",
+  "description": "angular.js 1, modular jquery with mustache.js and bootstrap",
   "main": "index.js",
   "scripts": {
     "livereload": "livereload",
@@ -11,6 +11,8 @@
   "author": "daggerok",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.5.7",
+    "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.6",
     "jquery": "^3.0.0",
     "mustache": "^2.2.1"
@@ -21,9 +23,8 @@
     "npm-run-all": "^2.2.0"
   },
   "keywords": [
-    "jquery",
+    "angular",
     "bootstrap",
-    "mustache",
     "json-server",
     "livereload"
   ],

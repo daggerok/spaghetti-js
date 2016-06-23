@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ng-app="spaghetti-ng">
 <head>
   <meta charset="UTF-8">
   <title>Modular JS</title>
@@ -7,6 +7,29 @@
   <link rel="stylesheet" href="/index.css">
 </head>
 <body class="container">
+
+<!-- angular 1.5: -->
+<section class="container-fluid">
+
+  <div class="panel page-header">
+    <h4>play ng</h4>
+    <header data-ng-include="'/spaghetti-ng/parts/header.html'"></header>
+  </div>
+
+  <div class="panel panel-body">
+    <div data-ui-view></div>
+  </div>
+
+  <div class="panel panel-footer">
+    <footer data-ng-include="'/spaghetti-ng/parts/footer.html'"></footer>
+  </div>
+
+</section>
+<script src="/node_modules/angular/angular.min.js"></script>
+<script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/spaghetti-ng.js"></script>
+
+<!-- jquery, mustache: -->
 <main class="container-fluid">
 
   <div class="panel panel-heading">
@@ -29,7 +52,7 @@
   <div id="app" class="container-fluid"></div>
 
   <template id="peopleTemplate">
-    <ul class="list-style-none">
+    <ul class="ul-list-style-none">
       {{#people}}
         <li data-person-id="{{id}}">
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -53,7 +76,11 @@
   </template>
 
 </main>
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="/node_modules/mustache/mustache.min.js"></script>
+<script src="/spaghetti-jquery.js"></script>
 
+<!-- plain old js -->
 <aside class="container-fluid">
 
   <div class="panel panel-heading">
@@ -69,10 +96,7 @@
   </div>
 
 </aside>
-
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="/node_modules/mustache/mustache.min.js"></script>
-<script src="/index.js"></script>
+<script src="/spaghetti-js.js"></script>
 
 </body>
 </html>
