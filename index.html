@@ -4,96 +4,38 @@
   <meta charset="UTF-8">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/index.css">
+  <link rel="stylesheet" href="/node_modules/ng-toast/dist/ngToast.min.css">
+  <link rel="stylesheet" href="/spaghetti-ng/css/index.css">
 </head>
 <body class="container-fluid">
 
-<!-- angular 1.5: -->
 <section>
 
   <div class="container-fluid">
-    <header data-ng-include="'/spaghetti-ng/parts/header.html'"></header>
+    <header data-ng-include="'/spaghetti-ng/htmls/header.html'"></header>
   </div>
 
   <div class="container-fluid">
     <div data-ui-view></div>
   </div>
 
+  <toast></toast>
+
+  <div class="container-fluid">
+    <header data-ng-include="'/spaghetti-ng/htmls/footer.html'"></header>
+  </div>
+
 </section>
 <script src="/node_modules/angular/angular.min.js"></script>
 <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="/spaghetti-ng.js"></script>
-<script src="/spaghetti-ng/ctrl/homeController.js"></script>
-<script src="/spaghetti-ng/ctrl/aboutController.js"></script>
-
-<!-- jquery, mustache: -->
-<main class="container">
-
-  <div class="panel panel-heading">
-    <h4>jquery is playing</h4>
-  </div>
-
-  <div>
-    <div class="panel panel-heading"><h4>new person</h4></div>
-    <div class="form-group">
-      <lable for="name">username</lable>
-      <input class="form-control" type="text" id="name">
-    </div>
-    <button id="addPersonButton" class="btn btn-warning disabled">save</button>
-  </div>
-
-  <div class="panel panel-heading">
-    <h4>people</h4>
-  </div>
-
-  <div id="app" class="container-fluid"></div>
-
-  <template id="peopleTemplate">
-    <ul class="ul-list-style-none">
-      {{#people}}
-        <li data-person-id="{{id}}">
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-
-          <span class="view">{{name}}</span>
-          <input class="edit" value="{{name}}">
-
-          <span class="glyphicon glyphicon-ok-circle"></span>
-          <span class="glyphicon glyphicon-remove-circle"></span>
-        </li>
-      {{/people}}
-    </ul>
-  </template>
-
-  <template id="errorTemplate">
-    <h3 class="panel-heading">:(</h3>
-    <div class="text-danger panel-body">
-      sorry, but something wrong happened ({{message}})
-    </div>
-  </template>
-
-</main>
-<script src="/node_modules/jquery/dist/jquery.min.js"></script>
-<script src="/node_modules/mustache/mustache.min.js"></script>
-<script src="/spaghetti-jquery.js"></script>
-
-<!-- plain old js -->
-<aside class="container">
-
-  <div class="panel panel-heading">
-    <h4>js is playing too</h4>
-  </div>
-
-  <div id="plain-old-js-app">
-    <input id="left-operand" type="text">
-    +
-    <input id="right-operand" type="text">
-    =
-    <span id="sum"></span>
-  </div>
-
-</aside>
-<script src="/spaghetti-js.js"></script>
+<!-- http://tamerayd.in/ngToast -->
+<script src="/node_modules/angular-animate/angular-animate.min.js"></script>
+<script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/node_modules/ng-toast/dist/ngToast.min.js"></script>
+<!-- http://tamerayd.in/ngToast -->
+<script src="/spaghetti-ng/js/index.js"></script>
+<script src="/spaghetti-ng/js/ctrl/homeController.js"></script>
+<script src="/spaghetti-ng/js/ctrl/aboutController.js"></script>
 
 </body>
 </html>

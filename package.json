@@ -12,10 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "angular": "^1.5.7",
+    "angular-animate": "^1.5.7",
+    "angular-sanitize": "^1.5.7",
     "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.6",
-    "jquery": "^3.0.0",
-    "mustache": "^2.2.1"
+    "ng-toast": "^2.0.0"
   },
   "devDependencies": {
     "json-server": "^0.8.14",

@@ -1,0 +1,8 @@
+/* jquery, mustache: */
+.ul-list-style-none {
+  list-style: none;
+}
+ul li span.glyphicon.glyphicon-pencil {
+  display: inline;
+}
+
