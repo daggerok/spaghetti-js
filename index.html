@@ -3,14 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>{{title}}</title>
+  <!-- vendor js --><!-- using /node_modules/bootstrap/dist/fonts -->
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/node_modules/ng-toast/dist/ngToast.min.css">
+  <!-- app -->
   <link rel="stylesheet" href="/spaghetti-ng/css/index.css">
 </head>
 <body class="container-fluid">
-
-<section>
-
+<toast></toast>
+<main>
   <div class="container-fluid">
     <header data-ng-include="'/spaghetti-ng/htmls/header.html'"></header>
   </div>
@@ -19,20 +20,18 @@
     <div data-ui-view></div>
   </div>
 
-  <toast></toast>
-
   <div class="container-fluid">
     <header data-ng-include="'/spaghetti-ng/htmls/footer.html'"></header>
   </div>
-
-</section>
+</main>
+<!-- vendor js -->
 <script src="/node_modules/angular/angular.min.js"></script>
 <script src="/node_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <!-- http://tamerayd.in/ngToast -->
 <script src="/node_modules/angular-animate/angular-animate.min.js"></script>
 <script src="/node_modules/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="/node_modules/ng-toast/dist/ngToast.min.js"></script>
-<!-- http://tamerayd.in/ngToast -->
+<!-- app -->
 <script src="/spaghetti-ng/js/index.js"></script>
 <script src="/spaghetti-ng/js/ctrl/homeController.js"></script>
 <script src="/spaghetti-ng/js/ctrl/aboutController.js"></script>

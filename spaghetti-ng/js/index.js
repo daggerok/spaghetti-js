@@ -7,8 +7,8 @@
   ])
 
     .config([
-      '$urlRouterProvider', '$stateProvider',
-      function($urlRouterProvider, $stateProvider) {
+      '$urlRouterProvider', '$stateProvider', 'ngToastProvider',
+      function($urlRouterProvider, $stateProvider, ngToastProvider) {
 
         $urlRouterProvider
 
@@ -33,6 +33,17 @@
             controller: 'aboutController'
           });
 
+        ngToastProvider
+          .configure({
+            horizontalPosition: 'right',
+            verticalPosition: 'bottom',
+            combineDuplications: true,
+            dismissOnClick: true,
+            animation: 'slide',
+            timeout: 10000,
+            maxNumber: 10
+          });
+        
       }]);
 
 })();
