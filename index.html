@@ -12,17 +12,11 @@
 <body class="container-fluid">
 <toast></toast>
 <main>
-  <div class="container-fluid">
-    <header data-ng-include="'/spaghetti-ng/htmls/header.html'"></header>
-  </div>
+  <header data-ng-include="'/spaghetti-ng/htmls/header.html'" class="container-fluid"></header>
 
-  <div class="container-fluid">
-    <div data-ui-view></div>
-  </div>
+  <div data-ui-view></div>
 
-  <div class="container-fluid">
-    <header data-ng-include="'/spaghetti-ng/htmls/footer.html'"></header>
-  </div>
+  <header data-ng-include="'/spaghetti-ng/htmls/footer.html'"></header>
 </main>
 <!-- vendor js -->
 <script src="/node_modules/angular/angular.min.js"></script>

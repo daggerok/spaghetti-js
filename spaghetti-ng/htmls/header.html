@@ -3,8 +3,11 @@
     <li class="navbar-brand">spaghetti-ng</li>
   </ul>
 
-  <ul class="nav nav-pills pull-right">
-    <li class="active"><a href="#/">Home</a></li>
-    <li><a href="#/directives">Directives</a></li>
+  <ul class="nav nav-pills pull-right" data-ng-model="activeModel">
+    <li data-ng-class="{active: activeModel.current === 'home'}"
+        data-ng-click="activeModel.current = 'home'"><a href="#/">Home</a></li>
+
+    <li data-ng-class="{active: activeModel.current === 'directives'}"
+        data-ng-click="activeModel.current = 'directives'"><a href="#/directives">Directives</a></li>
   </ul>
 </div>
