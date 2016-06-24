@@ -16,7 +16,7 @@
 
   <div data-ui-view></div>
 
-  <header data-ng-include="'/spaghetti-ng/htmls/footer.html'"></header>
+  <footer data-ng-include="'/spaghetti-ng/htmls/footer.html'"></footer>
 </main>
 <!-- vendor js -->
 <script src="/node_modules/angular/angular.min.js"></script>
@@ -27,10 +27,11 @@
 <script src="/node_modules/ng-toast/dist/ngToast.min.js"></script>
 <!-- app -->
 <script src="/spaghetti-ng/js/index.js"></script>
-<script src="/spaghetti-ng/js/ctrl/homeController.js"></script>
-<script src="/spaghetti-ng/js/ctrl/friendsController.js"></script>
-<script src="/spaghetti-ng/js/srvs/peopleService.js"></script>
-<script src="/spaghetti-ng/js/srvs/toastService.js"></script>
+<script src="/spaghetti-ng/js/controller/home.js"></script>
+<script src="/spaghetti-ng/js/controller/friends.js"></script>
+<script src="/spaghetti-ng/js/factory/people.js"></script>
+<script src="/spaghetti-ng/js/factory/toast.js"></script>
+<script src="/spaghetti-ng/js/directive/peopleWithFriends.js"></script>
 
 </body>
 </html>

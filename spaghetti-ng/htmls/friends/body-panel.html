@@ -1,18 +1,3 @@
 <div class="panel panel-body">
-  <div data-ng-repeat="person in people">
-    <span data-ng-init="friendsAreHidden = true"
-          data-ng-click="friendsAreHidden = !friendsAreHidden"><span class="blue">{{person.name}}</span> has </span>
-
-    <span data-ng-hide="!friendsAreHidden">
-      {{person.friends.length}}
-    </span>
-
-    <span>friends</span>
-
-    <span data-ng-hide="friendsAreHidden">
-      <ul class="ul-list-style-none">
-        <li data-ng-repeat="friend in person.friends">{{friend}}</li>
-      </ul>
-    </span>
-  </div>
+  <people-with-friends></people-with-friends>
 </div>

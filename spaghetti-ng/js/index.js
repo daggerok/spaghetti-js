@@ -3,7 +3,8 @@
 (function() {
 
   angular.module('spaghetti-ng', [
-    'ui.router', 'ngToast'
+    'ui.router',
+    'ngToast'
   ])
 
     .config([
