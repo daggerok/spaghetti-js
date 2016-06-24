@@ -22,6 +22,13 @@
         },
         transclude: true,
         replace: true,
+        link: function(scope, element, attrs) {
+          console.log('arguments', arguments);
+          element.on('click', function() {
+            console.log(attrs.message);
+            console.log('element ([0]) clicked:', element[0], 'with attributes:', attrs);
+          });
+        },
         controller: 'friendsController'
       };
 

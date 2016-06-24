@@ -20,8 +20,9 @@
     <div class="text-muted">{{message}}</div>
   </div>
   <div class="glyphicon-align-center" data-ng-transclude=""></div>
+  <!--
+   "replace: true" require wrapping div
+   Error: Template for directive 'peopleWithFriends' must have exactly one root element. /spaghetti-ng/htmls/directive/people-with-friends.html
+   is replacing <people-with-friends></people-with-friends> with a <div></div>
+  -->
 </div>
-<!--
- "replace: true" require wrapping div
- is replacing <people-with-friends></people-with-friends> with a <div></div>
--->
