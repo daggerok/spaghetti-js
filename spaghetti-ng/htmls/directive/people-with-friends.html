@@ -1,4 +1,5 @@
-<div data-ng-repeat="person in people">
+<div>
+  <div data-ng-repeat="person in people">
     <span data-ng-init="friendsAreHidden = true"
           data-ng-click="friendsAreHidden = !friendsAreHidden"><span class="blue">{{person.name}}</span> has </span>
 
@@ -6,11 +7,21 @@
       {{person.friends.length}}
     </span>
 
-  <span>friends</span>
+    <span>friends</span>
 
     <span data-ng-hide="friendsAreHidden">
       <ul class="ul-list-style-none">
         <li data-ng-repeat="friend in person.friends">{{friend}}</li>
       </ul>
     </span>
+  </div>
+
+  <div class="blockquote-reverse">
+    <div class="text-muted">{{message}}</div>
+  </div>
+  <div class="glyphicon-align-center" data-ng-transclude=""></div>
 </div>
+<!--
+ "replace: true" require wrapping div
+ is replacing <people-with-friends></people-with-friends> with a <div></div>
+-->

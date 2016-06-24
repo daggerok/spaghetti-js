@@ -12,11 +12,16 @@
       // TODO: move this in app config
       const VIEWS_URI = '/spaghetti-ng/htmls';
       const DIRECTIVES_URI = VIEWS_URI + '/directive';
-      
+
       return {
 
         restrict: 'E',
         templateUrl: DIRECTIVES_URI + '/people-with-friends.html',
+        scope: {
+          message: '=' // looking for attr data-people; two-way data-binding
+        },
+        transclude: true,
+        replace: true,
         controller: 'friendsController'
       };
 

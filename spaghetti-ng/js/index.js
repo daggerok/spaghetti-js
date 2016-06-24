@@ -46,8 +46,10 @@
 
           .state('/friends', {
             url: '/friends',
-            templateUrl: VIEWS_URI + '/friends.html',
+            templateUrl: VIEWS_URI + '/friends.html'
+            /*,
             controller: 'friendsController'
+            */
           });
 
       }]);

@@ -15,6 +15,9 @@
         $scope.title = 'people';
         $scope.person = {};
         $scope.people = [];
+        // view variables:
+        $scope.editMode;
+        $scope.name;
 
         peopleService.findAll().then(function(response) {
           $scope.people = response;

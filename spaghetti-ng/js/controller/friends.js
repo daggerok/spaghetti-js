@@ -14,9 +14,13 @@
 
         $scope.title = 'friends';
         $scope.people = [];
+        // view variables:
+        $scope.friendsAreHidden;
+        $scope.message;
 
         peopleService.findAll().then(function(response) {
           $scope.people = response;
+          console.log($scope.message);
         });
     }]);
 
