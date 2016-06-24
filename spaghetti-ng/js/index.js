@@ -7,43 +7,48 @@
   ])
 
     .config([
-      '$urlRouterProvider', '$stateProvider', 'ngToastProvider',
-      function($urlRouterProvider, $stateProvider, ngToastProvider) {
+
+      '$stateProvider', '$urlRouterProvider', 'ngToastProvider',
+      function($stateProvider, $urlRouterProvider, ngToastProvider) {
+
+        ngToastProvider.configure({
+          horizontalPosition: 'right',
+          verticalPosition: 'bottom',
+          combineDuplications: true,
+          dismissOnClick: true,
+          animation: 'slide',
+          timeout: 10000,
+          maxNumber: 10
+        });
 
         $urlRouterProvider
 
           .otherwise('/');
 
+        // TODO: move this in app config
+        const VIEWS_URI = '/spaghetti-ng/htmls';
+
         $stateProvider
 
-          .state('/home', {
+          .state('/', {
             url: '/',
-            templateUrl: '/spaghetti-ng/htmls/home.html',
-            controller: 'homeController',
+            templateUrl: VIEWS_URI + '/home.html',
+            controller: 'homeController'
+            /*,
             resolve: {
               people: ['peopleService', function(peopleService) {
                 return peopleService.get();
               }]
             }
+            */
           })
 
-          .state('/about', {
-            url: '/about',
-            templateUrl: '/spaghetti-ng/htmls/about.html',
-            controller: 'aboutController'
+          .state('/directives', {
+            url: '/directives',
+            templateUrl: VIEWS_URI + '/directives.html',
+            controller: 'directivesController'
           });
 
-        ngToastProvider
-          .configure({
-            horizontalPosition: 'right',
-            verticalPosition: 'bottom',
-            combineDuplications: true,
-            dismissOnClick: true,
-            animation: 'slide',
-            timeout: 10000,
-            maxNumber: 10
-          });
-        
       }]);
 
 })();

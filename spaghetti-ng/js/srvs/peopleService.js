@@ -5,57 +5,53 @@
  */
 (function() {
 
-  const URI = '/api/people';
-
   angular.module('spaghetti-ng')
 
     .factory('peopleService', [
 
-      '$http', 'ngToast',
-      function($http, ngToast) {
+      '$http', 'toastService',
+      function($http, toastService) {
 
-        function err(err) {
-          ngToast.warning(JSON.stringify(err) || 'error');
+        function ok(response) {
+          if (response && response.data) {
+            toastService.ok(response);
+            return response.data;
+          }
+          return response;
         }
 
-        function info(msg) {
-          ngToast.info(msg);
+        function error(error) {
+          toastService.err(error);
+          return error;
         }
 
         return {
 
+          // TODO: move this in app config
+          URI: '/api/people',
+
           get: function() {
-            return $http.get(URI)
-              .then(function(response) {
-                const people = response.data;
-                info('received: ' + JSON.stringify(people));
-                return people;
-              }, err);
+            return $http.get(this.URI)
+              .then(ok, error);
           },
 
           getById: function(id) {
-            return $http.get(URI + '/' + id)
-              .then(function(response) {
-                const person = response.data;
-                info('received: ' + JSON.stringify(person));
-                return person;
-              }, err);
+            return $http.get(this.URI + '/' + id)
+              .then(ok, error);
           },
 
           save: function(name) {
-            return $http.post(URI, {name: name});
+            return $http.post(this.URI, {name: name})
+              .then(ok, error);
           },
 
           update: function(person) {
-            return $http.put(URI + '/' + person.id, person)
-              .then(function(response) {
-                const res = response.data;
-                info('updated: ' + JSON.stringify(res));
-              }, err);
+            return $http.put(this.URI + '/' + person.id, person)
+              .then(ok, error);
           },
 
           delete: function(id) {
-            return $http.delete(URI + '/' + id)
+            return $http.delete(this.URI + '/' + id);
           }
         }
 

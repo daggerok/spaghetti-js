@@ -8,5 +8,26 @@
       "name": "daggerok",
       "id": 2
     }
+  ],
+  "friends": [
+    {
+      "person": "Max",
+      "friends": [
+        "Bob",
+        "Will",
+        "Alex",
+        "daggerok"
+      ],
+      "id": 1
+    },
+    {
+      "person": "daggerok",
+      "friends": [
+        "Alex",
+        "Jake",
+        "Max"
+      ],
+      "id": 2
+    }
   ]
 }

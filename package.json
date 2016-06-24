@@ -16,7 +16,8 @@
     "angular-sanitize": "^1.5.7",
     "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.6",
-    "ng-toast": "^2.0.0"
+    "ng-toast": "^2.0.0",
+    "satellizer": "^0.14.1"
   },
   "devDependencies": {
     "json-server": "^0.8.14",

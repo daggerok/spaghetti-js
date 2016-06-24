@@ -5,11 +5,3 @@
 ul li span.glyphicon.glyphicon-pencil {
   display: inline;
 }
-
-/* ngToast */
-.my-animation.ng-enter {
-  animation: flipInY 1s;
-}
-.my-animation.ng-leave {
-  animation: flipOutY 1s;
-}

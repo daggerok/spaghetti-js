@@ -9,40 +9,35 @@
 
     .controller('homeController', [
 
-      '$scope', 'peopleService', 'ngToast', 'people',
-      function($scope, peopleService, ngToast, people) {
+      '$scope', 'peopleService',
+      function($scope, peopleService) {
 
         $scope.title = 'people';
-        $scope.people = people;
         $scope.person = {};
+        $scope.people = [];
 
-        function err(err) {
-          ngToast.warning(JSON.stringify(err) || 'error');
-        }
-
-        $scope.remove = function(id, index) {
-
-          peopleService.delete(id)
-            .then(function(data) {
-              ngToast.warning('person (' + index + ') with id: ' +id + ' was removed.');
-              $scope.people.splice(index, 1);
-            }, err)
-        };
+        peopleService.get().then(function(response) {
+          $scope.people = response;
+        });
 
         $scope.save = function(name) {
-
           peopleService.save(name)
-            .then(function(response) {
-              const person = response.data;
-              ngToast.success(JSON.stringify(person));
+            .then(function(person) {
               $scope.person.name = '';
               $scope.people.push(person);
-            }, err);
+            });
         };
 
         $scope.update = function(person) {
           peopleService.update(person);
-        }
+        };
+
+        $scope.remove = function(id, index) {
+          peopleService.delete(id)
+            .then(function(response) {
+              $scope.people.splice(index, 1);
+            });
+        };
     }]);
 
 })();

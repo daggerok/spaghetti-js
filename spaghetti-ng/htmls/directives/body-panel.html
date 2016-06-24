@@ -1,0 +1,12 @@
+<div class="panel panel-body">
+  <div data-ng-repeat="person in people"
+       data-ng-click="(shown = !shown)">
+
+    <span data-ng-hide="shown">
+      <div>{{person.name}} has friends:</div>
+      <ul>
+        <li data-ng-repeat="friend in friends">{{friend}}</li>
+      </ul>
+    </span>
+  </div>
+</div>
