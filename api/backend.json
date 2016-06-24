@@ -1,12 +1,12 @@
 {
   "people": [
     {
-      "name": "@daggerok",
-      "id": 3
+      "name": "Max",
+      "id": 1
     },
     {
-      "name": "Max",
-      "id": 4
+      "name": "daggerok",
+      "id": 2
     }
   ]
 }

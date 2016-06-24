@@ -18,7 +18,7 @@
     <span data-ng-hide="editMode">{{person.name}}</span>
 
     <input data-ng-hide="!editMode"
-           data-ng-keyup="13 === $event.keyCode && !(editMode = false) && (person.name = name) && update(person)"
+           data-ng-keyup="13 === $event.keyCode && name && !(editMode = false) && (person.name = name) && update(person)"
            data-ng-model="name" value="{{person.name}}">
 
     <span data-ng-hide="!editMode"

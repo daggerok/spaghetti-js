@@ -6,10 +6,13 @@
   <div class="container-fluid">
     <div class="form-group">
       <lable for="name">username</lable>
+
       <input class="form-control" type="text" id="name"
-             data-ng-keyup="13 === $event.keyCode && save(person.name)"
-             data-ng-model="person.name">
-    </div>
-    <button data-ng-click="save(person.name)" class="btn btn-warning disabled">save</button>
+             data-ng-keyup="13 === $event.keyCode && person.name && save(person.name)"
+             data-ng-model="person.name"></div>
+
+    <button data-ng-click="save(person.name)"
+            data-ng-disabled="!person.name"
+            class="btn btn-warning">save</button>
   </div>
 </div>
