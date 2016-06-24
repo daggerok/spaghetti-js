@@ -30,12 +30,21 @@
         };
 
         $scope.save = function() {
-          $http.post('/api/people/', $scope.person)
+          $http.post('/api/people', $scope.person)
             .then(function(response) {
               const person = response.data;
               ngToast.success(JSON.stringify(person));
               $scope.person.name = '';
               $scope.people.push(person);
+            }, err)
+        };
+
+        $scope.update = function(person) {
+
+          $http.put('/api/people/' + person.id, person)
+            .then(function(response) {
+              const res = response.data;
+              ngToast.success(JSON.stringify(res));
             }, err)
         }
     }]);
