@@ -37,16 +37,16 @@
             /*,
             resolve: {
               people: ['peopleService', function(peopleService) {
-                return peopleService.get();
+                return peopleService.findAll();
               }]
             }
             */
           })
 
-          .state('/directives', {
-            url: '/directives',
-            templateUrl: VIEWS_URI + '/directives.html',
-            controller: 'directivesController'
+          .state('/friends', {
+            url: '/friends',
+            templateUrl: VIEWS_URI + '/friends.html',
+            controller: 'friendsController'
           });
 
       }]);

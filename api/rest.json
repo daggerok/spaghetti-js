@@ -2,16 +2,6 @@
   "people": [
     {
       "name": "Max",
-      "id": 1
-    },
-    {
-      "name": "daggerok",
-      "id": 2
-    }
-  ],
-  "friends": [
-    {
-      "person": "Max",
       "friends": [
         "Bob",
         "Will",
@@ -21,7 +11,7 @@
       "id": 1
     },
     {
-      "person": "daggerok",
+      "name": "daggerok",
       "friends": [
         "Alex",
         "Jake",

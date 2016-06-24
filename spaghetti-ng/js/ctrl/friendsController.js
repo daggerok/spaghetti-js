@@ -7,15 +7,15 @@
 
   angular.module('spaghetti-ng')
 
-    .controller('directivesController', [
+    .controller('friendsController', [
 
       '$scope', 'peopleService',
       function($scope, peopleService) {
 
-        $scope.title = 'directives';
+        $scope.title = 'friends';
         $scope.people = [];
 
-        peopleService.get().then(function(response) {
+        peopleService.findAll().then(function(response) {
           $scope.people = response;
         });
     }]);

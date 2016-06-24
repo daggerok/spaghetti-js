@@ -30,12 +30,12 @@
           // TODO: move this in app config
           URI: '/api/people',
 
-          get: function() {
+          findAll: function() {
             return $http.get(this.URI)
               .then(ok, error);
           },
 
-          getById: function(id) {
+          findAllById: function(id) {
             return $http.get(this.URI + '/' + id)
               .then(ok, error);
           },

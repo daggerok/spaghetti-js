@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "livereload": "livereload",
-    "json-server": "json-server ./api/backend.json -r ./api/routes.json -p 3000 --static ./ -w",
+    "json-server": "json-server ./api/rest.json -r ./api/routes.json -p 3000 --static ./ -w",
     "start": "npm i && npm-run-all --parallel json-server livereload"
   },
   "author": "daggerok",

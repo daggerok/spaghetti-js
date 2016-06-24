@@ -16,7 +16,7 @@
         $scope.person = {};
         $scope.people = [];
 
-        peopleService.get().then(function(response) {
+        peopleService.findAll().then(function(response) {
           $scope.people = response;
         });
 
