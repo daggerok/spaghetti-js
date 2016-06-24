@@ -21,20 +21,9 @@
             templateUrl: '/spaghetti-ng/htmls/home.html',
             controller: 'homeController',
             resolve: {
-              people: [
-                '$http', 'ngToast',
-                function($http, ngToast) {
-
-                  return $http.get('/api/people')
-                    .then(
-                      function(response) {
-                        return response.data;
-                      },
-                      function(err) {
-                        ngToast.error(err, 'err');
-                      }
-                    );
-                }]
+              people: ['peopleService', function(peopleService) {
+                return peopleService.get();
+              }]
             }
           })
 
