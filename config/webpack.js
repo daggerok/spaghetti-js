@@ -6,6 +6,7 @@ const ExtractPlugin = require('extract-text-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
+const Path = require('path');
 
 module.exports = {
   modulesDirectories: [
@@ -65,7 +66,10 @@ module.exports = {
     loaders: [
       {
         test: /\.(js|es6)$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
+        include: [
+          Path.resolve(process.cwd(), 'src')
+        ],
         loader: 'babel-loader',
         query: {
           presets: [
@@ -85,33 +89,46 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
+        include: [
+          Path.resolve(process.cwd(), 'src')
+        ],
         loader: ExtractPlugin.extract('style-loader', 'css-loader!postcss-loader!sass-loader')
       },
       {
         test: /\.less$/,
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
+        include: [
+          Path.resolve(process.cwd(), 'src')
+        ],
         loader: ExtractPlugin.extract('style-loader', 'css-loader!postcss-loader!less-loader')
       },
       {
-        test: /\.(png|jpg|jpeg|gif)$/,
-        exclude: /node_modules/,
+        test: /\.(png|jpg|jpeg|gif|ico)$/,
+        // exclude: /node_modules/,
+        include: [
+          Path.resolve(process.cwd(), 'src')
+        ],
         loader: 'url-loader?limit=8192'
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        // exclude: /node_modules/,
         loader: 'file-loader'
       },
       {
         test: /\.(woff|woff2)$/,
+        // exclude: /node_modules/,
         loader:'url-loader?prefix=font/&limit=8192'
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        // exclude: /node_modules/,
         loader: 'url-loader?limit=8192&mimetype=application/octet-stream'
       },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        // exclude: /node_modules/,
         loader: 'url-loader?limit=8192&mimetype=image/svg+xml'
       }
     ]
