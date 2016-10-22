@@ -2,112 +2,133 @@
 
 $(document).ready(function () {
 
-  const APP = {
+  const PPL = {
 
-    URI: '/api/people',
     disabled: 'disabled',
-    errorTemplateId: '#errorTemplate',
-    personTemplateId: '#personTemplate',
+    POST_URI: '/api/people',
+    GET_URI: '/api/people?size=30&sort=id,desc',
+    personPartialTemplateId: '#personPartialTemplate',
     peopleTemplateId: '#peopleTemplate',
+    errorTemplateId: '#errorTemplate',
 
     main: function() {
       this.cacheDom();
-      this.registerListeners();
-      this.registerPartials();
-      this.renderPeople();
+      this.binding();
+      this.helper();
+      this.render();
     },
 
     cacheDom: function() {
       this.$app = $('#app');
-      this.$list = $('#list');
-      this.$name = $('#name');
+      this.$username = $('#username');
       this.$addPersonButton = $('#addPersonButton');
-      this.$renderPeopleButton = $('#renderPeopleButton');
-      this.isAfterRefresh = true;
+      this.$retryButton = $('#retryButton');
     },
 
-    registerListeners: function() {
-      this.$renderPeopleButton.click(this.synchronize.bind(this));
-      this.$addPersonButton.click(this.addPersonHandler.bind(this));
-      this.$name.keyup(this.onKeyup.bind(this));
+    binding: function() {
+      this.$username.keyup(this.onUsernameKeyup.bind(this));
+      this.$addPersonButton.click(this.onAddPersonButtonClick.bind(this));
+      this.$retryButton.click(this.render.bind(this));
     },
 
-    registerPartials: function() {
-      return Handlebars.registerPartial('person', $(this.personTemplateId).html());
+    helper: function() {
+      return Handlebars.registerPartial('person', $(this.personPartialTemplateId).html());
     },
 
-    renderPeople: function() {
-      $.getJSON(this.URI)
+    render: function() {
+      $.getJSON(this.GET_URI)
         .then(this.then.bind(this))
         .fail(this.fail.bind(this));
     },
 
-    renderPerson: function(id, person) {
-      const hbs = this.hbs(this.personTemplateId);
-      const data = { 'id': person.id, 'name': person.name };
+    onUsernameKeyup: function(event) {
+      const keyCode = event.keyCode || event.which;
+      const currentValue = this.getUsername();
 
-      this.$list.append(hbs(data));
-    },
-
-    onKeyup: function(event) {
-      if (this.getName()) {
+      // some key was pressed
+      if (currentValue) {
         this.enableAddPersonButton();
-        const keyCode = event.keyCode || event.which;
 
+        // enter was pressed
         if (13 === keyCode) {
-          this.addPersonHandler();
+          this.addPerson(this.getUsername());
         }
-      } else {
+
+      }
+      // input value is empty
+      else {
         this.disableAddPersonButton();
       }
     },
 
-    addPersonHandler: function() {
-      const name = this.getName();
-
-      if (name) {
-        this.$name.val('');
-
-        $.post(this.URI, {name: name})
-          .then(this.renderPeople.bind(this))
-          .fail(this.fail)
+    onAddPersonButtonClick: function() {
+      if (this.addPersonButtonIsEnabled()) {
+        this.addPerson(this.getUsername());
       }
-      this.disableAddPersonButton();
-    },
-
-    getName: function() {
-      return this.$name.val();
-    },
-
-    resetDom: function() {
-      this.$name.val('');
-      this.disableAddPersonButton();
     },
 
     enableAddPersonButton: function() {
       this.$addPersonButton.removeClass(this.disabled);
     },
 
+    getUsername: function() {
+      return this.$username.val();
+    },
+
+    addPerson: function(username) {
+      if (username) {
+        this.post(username)
+          .then(this.appendChild.bind(this))
+          .fail(this.fail.bind(this));
+
+        this.resetDom();
+      }
+    },
+
+    post: function(username) {
+      return $.ajax({
+        url: this.POST_URI,
+        type: 'post',
+        contentType : 'application/json',
+        data: this.toPerson(username)
+      });
+    },
+
     disableAddPersonButton: function() {
       this.$addPersonButton.addClass(this.disabled);
     },
 
-    synchronize: function() {
-      this.isAfterRefresh = true;
-      this.$list.html('');
-      this.renderPeople();
+    toPerson: function(username) {
+      return JSON.stringify({name: username});
     },
 
-    then: function(people) {
+    resetDom: function() {
+      this.clearUsernameValue();
+      this.disableAddPersonButton();
+    },
 
+    addPersonButtonIsEnabled: function() {
+      return !this.$addPersonButton.hasClass(this.disabled);
+    },
+
+    clearUsernameValue: function() {
+      this.$username.val('');
+    },
+
+    appendChild: function(data) {
+      if (!this.$app.find('ul').is(":visible")) {
+        this.render();
+      } else {
+        const hbs = this.hbs(this.personPartialTemplateId);
+
+        this.$app.find('ul').prepend(hbs(data));
+      }
+    },
+
+    then: function(data) {
       const hbs = this.hbs(this.peopleTemplateId);
 
-      this.$app.html(hbs({ "people": people }));
-
-      if (this.isAfterRefresh) {
-        $.each(people, this.renderPerson.bind(this));
-        this.isAfterRefresh = false;
-      }
+      this.$app.html(hbs(this.parsePeopleFromHateoas(data)));
     },
 
     fail: function(jqXHR, status, statusText) {
@@ -115,7 +136,10 @@ $(document).ready(function () {
       const data = { "message": status + ': ' + statusText };
 
       this.$app.html(hbs(data));
-      console.log(jqXHR);
+    },
+
+    parsePeopleFromHateoas: function (data) {
+      return { 'people' : data._embedded.people };
     },
 
     hbs: function(hbsSelector) {
@@ -124,6 +148,6 @@ $(document).ready(function () {
 
   };
 
-  APP.main();
+  PPL.main();
 
 });

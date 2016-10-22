@@ -1,12 +1,18 @@
 {
-  "name": "spaghetti-js",
-  "version": "1.0.0",
+  "name": "jquery-spaghetti",
+  "version": "0.0.1",
   "description": "modular jquery with handlebars.js and bootstrap",
   "main": "index.js",
   "scripts": {
-    "livereload": "livereload",
-    "json-server": "json-server ./api/backend.json -r ./api/routes.json -p 3000 --static ./ -w",
-    "start": "npm i && npm-run-all --parallel json-server livereload"
+    "prestart": "npm i",
+    "postinstall": "npm prune",
+    "stop": "npm run gradle -- --stop",
+    "sleep": "sleep 7 # netstat -plten |grep node",
+    "browser-sync": "browser-sync --config=./config/bs-config.js start",
+    "gradle": "bash ./jquery-spaghetti-backend/gradlew -b ./jquery-spaghetti-backend/build.gradle ",
+    "start:frontend": "npm-run-all sleep browser-sync",
+    "start:backend": "npm run gradle -- -a bootRun",
+    "start": "npm-run-all -p start:*"
   },
   "author": "daggerok",
   "license": "ISC",
@@ -16,23 +22,23 @@
     "jquery": "^3.0.0"
   },
   "devDependencies": {
-    "json-server": "^0.8.14",
-    "livereload": "^0.4.1",
+    "browser-sync": "^2.13.0",
+    "http-proxy-middleware": "^0.16.0",
     "npm-run-all": "^2.2.0"
   },
   "keywords": [
     "jquery",
     "bootstrap",
     "handlebars",
-    "json-server",
-    "livereload"
+    "browser-sync",
+    "http-proxy-middleware"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/daggerok/spaghetti-js.git"
+    "url": "git+https://github.com/daggerok/jquery-spaghetti.git"
   },
   "bugs": {
-    "url": "https://github.com/daggerok/spaghetti-js/issues"
+    "url": "https://github.com/daggerok/jquery-spaghetti/issues"
   },
-  "homepage": "https://github.com/daggerok/spaghetti-js#readme"
+  "homepage": "https://github.com/daggerok/jquery-spaghetti#readme"
 }

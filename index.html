@@ -2,53 +2,50 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Modular JS</title>
+  <title>Modular JQuery spaghetti</title>
   <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="/index.css">
 </head>
-<body class="container">
-
-<div class="panel panel-heading">
-  <h4>jquery is playing</h4>
-</div>
-
-<div>
-  <div class="panel panel-heading"><h4>new person</h4></div>
-  <div class="form-group">
-    <lable for="name">username</lable>
-    <input class="form-control" type="text" id="name">
+<body>
+<div class="container-fluid">
+  <div class="panel">
+    <h3 class="panel-heading">add new person</h3>
   </div>
-  <button id="addPersonButton" class="btn btn-warning disabled">save</button>
-  <button id="renderPeopleButton" class="btn btn-primary">synchronize</button>
-</div>
-
-<div class="row container-fluid">
-  <div class="panel panel-heading"><h4>people</h4></div>
-  <div id="app" class="container-fluid col-sm-6"></div>
-  <div class="container-fluid col-sm-6">
-    <ul id="list" class="list-style-none"></ul>
+  <div class="panel-body">
+    <div class="form-group">
+      <lable for="username">username</lable>
+      <input class="form-control" type="text" id="username">
+    </div>
+    <button id="addPersonButton" class="btn btn-warning disabled">save</button>
   </div>
 </div>
-
+<div id="app" class="container-fluid"></div>
+<!-- show people template -->
 <script id="peopleTemplate" type="text/x-handlebars-template">
-  <ul class="list-style-none">
-    {{#each people}}
-      {{> person}}
-    {{/each}}
-  </ul>
-</script>
-
-<script id="personTemplate" type="text/x-handlebars-template">
-  <li>{{id}}. {{name}}</li>
-</script>
-
-<script id="errorTemplate" type="text/x-handlebars-template">
-  <h3 class="panel-heading">:(</h3>
-  <div class="text-danger panel-body">
-    sorry, but something wrong happened ({{message}})
+  <div class="panel">
+    <h3 class="panel-heading">current people</h3>
+  </div>
+  <div class="panel-body">
+    <ul class="list-style-none">
+      {{#each people}}
+        {{> person}}
+      {{/each}}
+    </ul>
   </div>
 </script>
-
+<!-- person template -->
+<script id="personPartialTemplate" type="text/x-handlebars-template">
+  <li>{{id}}) {{name}}</li>
+</script>
+<!-- error template -->
+<script id="errorTemplate" type="text/x-handlebars-template">
+  <div class="panel">
+    <h3 class="panel-heading">:(</h3>
+    <div class="text-danger panel-body">
+      <div>sorry, but something wrong happened <code>{{message}}</code> please, try again later</div>
+    </div>
+  </div>
+</script>
 <script src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
 <script src="/index.js"></script>
