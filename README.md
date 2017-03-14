@@ -1,8 +1,9 @@
-spaghetti-js
-============
+apply bind call
+===============
 
 spaghetti js
 
 ```sh
-npm start
+yarn install
+yarn start
 ```
